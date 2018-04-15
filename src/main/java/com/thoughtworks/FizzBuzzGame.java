@@ -5,6 +5,9 @@ import java.util.List;
 
 
 public class FizzBuzzGame {
+    public static final String FIZZ = "Fizz";
+    public static final String BUZZ = "Buzz";
+    public static final String WHIZZ = "Whizz";
     private List<String> results = new ArrayList<>();
 
     public void start(int count) {
@@ -18,21 +21,11 @@ public class FizzBuzzGame {
         final int secondNum = 5;
         final int thirdNum = 7;
 
-        if (digitsContains(num, firstNum)) {
-            return "Fizz";
+        if ((num + "").contains(firstNum + "")) {
+            return FIZZ;
         }
-        StringBuilder sbResult = new StringBuilder();
 
-        if (num % firstNum == 0) {
-            sbResult.append("Fizz");
-        }
-        if (num % secondNum == 0) {
-            sbResult.append("Buzz");
-        }
-        if(num % thirdNum == 0)
-            sbResult.append("Whizz");
-
-        String result = sbResult.toString();
+        String result = muitipleOf(num, firstNum, secondNum, thirdNum);
 
         if (result.length() == 0) {
             return num + "";
@@ -42,15 +35,18 @@ public class FizzBuzzGame {
 
     }
 
-    private boolean digitsContains(int num, int firstNum) {
-        while (num > 0) {
-            int digit = num % 10;
-            if (digit == firstNum) {
-                return true;
-            }
-            num /= 10;
+    private String muitipleOf(int num, int firstNum, int secondNum, int thirdNum) {
+        StringBuilder sbResult = new StringBuilder();
+
+        if (num % firstNum == 0) {
+            sbResult.append(FIZZ);
         }
-        return false;
+        if (num % secondNum == 0) {
+            sbResult.append(BUZZ);
+        }
+        if(num % thirdNum == 0)
+            sbResult.append(WHIZZ);
+        return sbResult.toString();
     }
 
     public List<String> getResults() {
